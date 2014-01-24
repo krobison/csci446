@@ -1,0 +1,210 @@
+@import "compass/reset";
+@import 'coolfont';
+
+//Written By: Kolten Robison//
+
+//###########################//
+//###   HOW I USED SASS   ###//
+//###########################//
+//	Variables: see the large and commented variables section just below
+//	Nesting: I nested in many places, the <a> tag in the <nav> for example.
+//	Partials: I used partials with my custom font
+//	Mixins: I used the border radius mixin from the site, and I wrote a transition mixin myself
+//	Inheritance: I used inheritance to define a hover style for the nav list based on the non-hover style
+//	Operators:	I used operators to nicely calculate div spacing for the sticky footer
+//#########################################################################################################
+
+//#######################
+//#####  Variables  #####
+//#######################
+	//Sizes
+		//To ensure no wrapping with nav bar. This site is not formatted well for mobile, but that is ok with me.
+		$minimum_width:850px;
+		//Header - These variables specify the size of the light green header.
+			$width_header:100%;
+			$height_header:128px;
+		//footer
+			$footer_height:64px;
+		//Nav - These variables specify the spacing within the nav bar
+			$padding_nav:16px;
+			$padding_link: 8px 32px 8px 32px;
+	//Color - These variables were pulled from adobe kuler to make a conforming color scheme.
+		$color_primary: #5C832F;
+		$color_primary_dark:#284907;
+		$color_secondary:#382513;
+		$color_active:#C8BA98;
+		$color_active_dark:#A89A78;
+		$color_active_light:#D8CAA8;
+		
+	$body_font_family: Arial, Helvetica, sans-serif;
+
+		
+//#######################
+//######  Mixins  #######
+//#######################
+		
+//This was borrowed from the SASS guide to demonstrate the power of a mixin by greatly simplifying multi-browser border-radius tags
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+       -o-border-radius: $radius;
+          border-radius: $radius;
+}
+
+//This is a mixin that I wrote to simplify the implementation of CSS transitions
+@mixin transition($type,$duration,$timing-function,$delay){
+	transition-property: $type;
+	transition-duration: $duration;
+	transition-timing-function: $timing-function;
+	transition-delay: 2s;
+	/* Safari */
+	-webkit-transition-property:$type;
+	-webkit-transition-duration:$duration;
+	-webkit-transition-timing-function:$timing-function;
+	-webkit-transition-delay:$delay;
+}
+
+html,body{
+	height:100%;	//important for sticky footer
+	font-family:$body_font_family;
+}
+
+//This is this lighter green area at the very top of the page
+header{
+	background-color:$color_primary;
+	height:$height_header;
+	width:$width_header;
+	text-align:center;
+	font-family: 'bonvenocflight';
+	font-size:400%;
+}
+
+//This is the dark green bar near the top of the page
+nav{
+	text-align:center; 						//This ensures that links are centered.
+	background-color:$color_primary_dark;	//This is pulled from the color variables
+	padding:$padding_nav;					//This is to size the nav bar based on the size of the links within
+	min-width:$minimum_width;				//This is to prevent wrapping on smaller screens.
+	a{										//LINKS
+		@include border-radius(10px);		//This is reffering to the mixin defined above
+		@include transition(background-color,0.35s,linear,0s);	//This is a transition for link hover
+		background-color:white;				//White background for page links
+		margin-left:5%;						//Spacing in between pages links
+		padding: $padding_link;				//This makes the links have white space around them
+		text-decoration:none;				//This removes the underline and hover from the <a> tag
+		color:$color_secondary;				//Pulled from the color variables
+		font-family: Rockwell, "Courier Bold", Courier;
+		font-weight:bold;					//Bolds the links
+	}
+	a:hover{
+		@extend a;
+		background-color:$color_active;
+	}
+}
+
+//These styles are for the sticky footer, ensuring that 100% - the height of the sticky footer lies above the sticky footer
+.page{
+	min-height:100%;
+	margin-bottom:-1 * $footer-height;
+}
+
+.page:after{
+	content:"";
+	display:block;
+}
+
+.sticky-footer,.page:after{
+	height:$footer-height;
+}
+
+.sticky-footer{
+	background:$color_primary_dark;
+	text-align:center;
+	
+	p{
+		padding-top:$footer_height / 2 - 8px;
+		font-size:90%;
+		a{
+			text-decoration:none;
+		}
+	}
+}
+
+.panel-left,.panel-right{	//These are to separate the left and right contents
+	position:absolute;
+	margin-top:8px;
+	height:400px;
+	
+	border:2px $color_active_dark solid;
+	@include border-radius(10px);
+	
+	h1{
+		text-align:center;
+		font-size:200%;
+		font-weight:bold;
+		margin-top:16px;
+		font-family: Rockwell, "Courier Bold", Courier;
+	}
+}
+
+.panel-left{			//This is the left content side
+	width:64%;
+	margin-left:2%;
+	text-align:top;
+	p{
+		padding:32px;
+	}
+	
+}
+
+.panel-right{				//This is the right content side
+	width:30%;
+	margin-left:68%;
+	margin-right:2%;
+}
+
+input{
+	width:200px;
+	height:32px;
+}
+input:focus{		//These are transitions for the forms
+	@include transition(border,0.35s,linear,0s);	//This is a transition for active input
+	@include transition(border-radius,0.35s,linear,0s);	//This is a transition for active input
+	@include border-radius(10px);
+	border: 4px #FF0000 solid;
+}
+
+.login{
+	text-align:center;
+	margin-top:16px;
+}
+
+#picture{		//The bonsai tree
+	width:200px;
+	height:200px;
+}
+
+ul{				//These are some nifty links on the right side
+	float:right;
+	li{
+		margin-right:32px;
+		margin-top:16px;
+	}
+	a{
+		text-decoration:none;
+		color:$color_primary;
+	}a:hover{
+		color:red;
+	}
+}	
+
+#remember{			//shrink the giant checkbox
+	width:16px;
+	height:16px;
+	margin-left:8px;
+}
+
+.logo{
+	padding-top:24px;
+}
