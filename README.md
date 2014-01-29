@@ -6,3 +6,7 @@ ___
 
 ###Project 2
 * Ruby Warrior
+
+###Project 3
+* Rails Demo
+* Depot Beginning
