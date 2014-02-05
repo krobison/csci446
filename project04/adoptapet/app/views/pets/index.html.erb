@@ -2,13 +2,16 @@
 
 <h1>All Pets</h1>
 
+
+<h4><span class= 'list_link'><%= link_to 'New Pet', new_pet_path %></span></h4>
+
 <table>
   <thead>
     <tr>
-      <th>Type</th>
-      <th>Description</th>
+      <th><%= sortable "petkind", "Type" %></th>
+      <th><%= sortable "name" %></th>
       <th>Picture</th>
-      <th>Price</th>
+      <th><%= sortable "price" %></th>
       <th></th>
       <th></th>
       <th></th>
@@ -37,5 +40,3 @@
 </table>
 
 <br>
-
-<span class= 'list_link'><%= link_to 'New Pet', new_pet_path %></span>

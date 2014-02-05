@@ -3,8 +3,9 @@ class PetsController < ApplicationController
 
   # GET /pets
   # GET /pets.json
+  helper_method :sort_column,:sort_direction
   def index
-    @pets = Pet.all
+    @pets = Pet.order(sort_column + " " + sort_direction)
   end
 
   # GET /pets/1
@@ -71,4 +72,12 @@ class PetsController < ApplicationController
     def pet_params
       params.require(:pet).permit(:petkind, :name, :description, :image_url, :price)
     end
+	
+	def sort_column
+		Pet.column_names.include?(params[:sort]) ? params[:sort] : "name"
+	end
+	
+	def sort_direction
+		%w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+	end
 end
