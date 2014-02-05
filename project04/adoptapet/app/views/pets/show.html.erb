@@ -1,7 +1,7 @@
-<p id="notice"><%= notice %></p>
+
 
 <p>
-  <strong>Petkind:</strong>
+  <strong>Type:</strong>
   <%= @pet.petkind %>
 </p>
 
@@ -16,14 +16,16 @@
 </p>
 
 <p>
-  <strong>Image url:</strong>
-  <%= @pet.image_url %>
+  <strong>Image:</strong><br>
+  <%= image_tag(@pet.image_url, class: 'list_image') %>
 </p>
 
 <p>
   <strong>Price:</strong>
   <%= @pet.price %>
 </p>
+<hr>
+<p>You must agree to love this animal with all of your heart and to feed it everyday and to snuggle it at least 3 times a week.</p>
+<br>
 
-<%= link_to 'Edit', edit_pet_path(@pet) %> |
-<%= link_to 'Back', pets_path %>
+<p><a href="#" class="adopt"> Adopt </a></p>

@@ -45,4 +45,12 @@
 	.kind{
 		text-align:center;
 	}
+	
+	.adopt{
+		font-size: 250%;
+		text-decoration:none;
+		border:2px black solid;
+		padding:6px;
+		@include border-radius(10px);		//This is reffering to the mixin defined above
+	}
 }

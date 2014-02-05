@@ -11,6 +11,7 @@
 		<p><%=pet.description.html_safe %></p>
 		<div class="price_line">
 			<span class="price"><%=number_to_currency(pet.price) %></span>
+			<%= link_to 'Adopt', pet %>
 		</div>
 	</div>
 <% end%>
