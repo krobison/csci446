@@ -1,4 +1,5 @@
 Adoptapet::Application.routes.draw do
+  get "shelter/index"
   resources :pets
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -6,6 +7,7 @@ Adoptapet::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
+  root to: 'shelter#index', as: 'shelter'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
