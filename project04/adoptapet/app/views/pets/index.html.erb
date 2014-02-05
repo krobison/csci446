@@ -1,0 +1,41 @@
+
+
+<h1>All Pets</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Picture</th>
+      <th>Price</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pets.each do |pet| %>
+      <tr>
+        <td class="kind"><h3><%= pet.petkind %></h3></td>
+        <td class="list_description">
+			<dl>
+				<dt><h2><%= pet.name %></h2></dt>
+				<dd><%= pet.description.html_safe %></dd>
+			</dl>
+		</td>
+        <td><%= image_tag(pet.image_url, class: 'list_image') %></td>
+        <td><%= pet.price %></td>
+		
+        <td><%= link_to 'Show', pet %></td>
+        <td><%= link_to 'Edit', edit_pet_path(pet) %></td>
+        <td><%= link_to 'Destroy', pet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<span class= 'list_link'><%= link_to 'New Pet', new_pet_path %></span>

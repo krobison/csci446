@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Adoptapet::Application.config.secret_key_base = '1526167d574c8f72e68ae405f98c4a2b365f8893380a1679ed05e9b0e10844916d0aead1e32bb8e883442075ac7e0f0b6135c6cda2300dceac71ad28d85a7c80'
+Adoptapet::Application.config.secret_key_base = '1c80f651091c03654801a9370187cd30e9ec7030970d650f0af713834996eb520f914c3b580ab6a934dd297f18f5491a4dffc601c65cd5ab1f24d6821bd9307a'
