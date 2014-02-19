@@ -1,4 +1,10 @@
 Adoptapet::Application.routes.draw do
+  resources :orders
+
+  resources :line_items
+
+  resources :carts
+
   get "shelter/index"
   resources :pets
 
@@ -7,7 +13,7 @@ Adoptapet::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-  root to: 'shelter#index', as: 'shelter'
+  root 'shelter#index', as: 'shelter'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

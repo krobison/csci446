@@ -14,6 +14,16 @@
   </div>
   <div id="columns">
     <div id="side">
+		Considered Pet
+		<div id="cart">
+			<ul class="list" id="list">
+				<%= render(@cart.line_items) %>
+			</ul>
+		</div>
+
+		<%= button_to 'Remove Considered Pet', @cart, method: :delete,
+    data: { confirm: 'Are you sure?' } %>
+		
       <ul>
         <li><%= link_to 'Home', shelter_index_path %></li>
         <li><%= link_to 'Pet List', pets_path %></li>

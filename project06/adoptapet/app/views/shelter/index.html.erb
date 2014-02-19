@@ -10,8 +10,19 @@
 		<h3><%=pet.name %> <span class="petkind">(<%=pet.petkind %>)</span></h3>
 		<p><%=pet.description.html_safe %></p>
 		<div class="price_line">
-			<span class="price"><%=number_to_currency(pet.price) %></span>
-			<%= link_to 'Adopt', pet %>
-		</div>
+		<% if pet.status == 0 %>
+				<span class="price"><%=number_to_currency(pet.price) %></span>
+				<%= link_to 'Adopt', pet%>
+				 <%= button_to 'Consider', line_items_path(pet_id: pet), remote: true %>
+			<h5 id="stat" style="color:#11AA00">
+				Available
+			</h5>
+			</div>
+		<% else %>
+			<h5 id="stat" style="color:#FF0000">
+				Unavailable (Adopted)
+			</h5>
+			</div>
+		<% end %>
 	</div>
 <% end%>

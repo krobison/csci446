@@ -51,6 +51,26 @@
     padding: 1em 2em;
     width: 13em;
     background: #BBC;
+	
+	 form, div {
+      display: inline;
+    }  
+ 
+    input {
+      font-size: small;
+    }
+
+    #cart {
+      font-size: smaller;
+      color:     blue;
+
+      .list {
+        border-top:    1px dotted #559;
+        border-bottom: 1px dotted #559;
+        margin-bottom: 10px;
+      }
+    }
+
 
     ul {
       padding: 0;
