@@ -1,0 +1,17 @@
+<% if notice %>
+	<p id="notice"><%=notice %></p>
+<% end%>
+
+<h1>Shelter Pet List</h1>
+
+<% @pets.each do |pet| %>
+	<div class="entry">
+		<%=image_tag(pet.image_url) %>
+		<h3><%=pet.name %> <span class="petkind">(<%=pet.petkind %>)</span></h3>
+		<p><%=pet.description.html_safe %></p>
+		<div class="price_line">
+			<span class="price"><%=number_to_currency(pet.price) %></span>
+			<%= link_to 'Adopt', pet %>
+		</div>
+	</div>
+<% end%>

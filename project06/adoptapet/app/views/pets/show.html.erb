@@ -1,0 +1,31 @@
+
+
+<p>
+  <strong>Type:</strong>
+  <%= @pet.petkind %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @pet.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @pet.description %>
+</p>
+
+<p>
+  <strong>Image:</strong><br>
+  <%= image_tag(@pet.image_url, class: 'list_image') %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @pet.price %>
+</p>
+<hr>
+<p>You must agree to love this animal with all of your heart and to feed it everyday and to snuggle it at least 3 times a week.</p>
+<br>
+
+<p><a href="#" class="adopt"> Adopt </a></p>

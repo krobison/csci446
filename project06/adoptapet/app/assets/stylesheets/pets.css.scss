@@ -1,0 +1,56 @@
+//A helpful mixin from out first unit
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+       -o-border-radius: $radius;
+          border-radius: $radius;
+}
+
+.pets{
+
+	table{
+		max-width:1000px;
+		min-width:400px;
+		border: 2px #000066 solid;
+		@include border-radius(10px);		//This is reffering to the mixin defined above
+	}
+
+	table tr td{
+		padding:5px;
+		vertical-align:top;
+		border: 1px #CCCCFF dashed;
+	}
+	
+	.list_image{
+		width: 200px;
+		height:200px;
+	}
+	
+	.list_description {
+		width: 60%;
+		dl {
+			margin: 0;
+		}
+		dt {
+			color: #222244;
+			font-weight: bold;
+			font-size: larger;
+		}
+		dd {
+			margin: 0;
+		}
+	}
+	
+	.kind{
+		text-align:center;
+	}
+	
+	.adopt{
+		font-size: 250%;
+		text-decoration:none;
+		border:2px black solid;
+		padding:6px;
+		@include border-radius(10px);		//This is reffering to the mixin defined above
+	}
+}
