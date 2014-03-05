@@ -5,3 +5,7 @@ h1 {
 table, td, th{
 	border: 1px black solid;
 }
+
+footer{
+	color:red;
+}

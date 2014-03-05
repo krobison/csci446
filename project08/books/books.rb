@@ -72,6 +72,23 @@ class BookApp
 		
 	def render_list(req, response)
 		loadBooks
+		
+		sorter = req.GET["sorter"]
+		
+		if sorter == "author"
+			@books.sort! { |a,b| a.author <=> b.author }
+		elsif sorter == "copies"
+			@books.sort! { |a,b| a.rank <=> b.rank }
+		elsif sorter == "language"
+			@books.sort! { |a,b| a.language <=> b.language }
+		elsif sorter == "rank"
+			@books.sort! { |a,b| a.rank <=> b.rank }
+		elsif sorter == "title"
+			@books.sort! { |a,b| a.title <=> b.title }
+		elsif sorter == "year"
+			@books.sort! { |a,b| a.year <=> b.year }
+		end
+		
 		response.write("<table><tr><th>Rank</th><th>Title</th><th>Author</th><th>Language</th><th>Year</th><th>Copies</th></tr>")
 		@books.each do |book|
 			response.write("<tr>")
@@ -84,10 +101,22 @@ class BookApp
 			response.write("</tr>")
 		end
 		response.write("</table>")
+		response.write(footer)
 	end
 	
 	def render_form(req, response)
-		
+		response.write("<form action=\"list\">")
+		response.write("<select name=\"sorter\">")
+		response.write("<option value=\"author\">Author</option>")
+		response.write("<option value=\"copies\">Copies</option>")
+		response.write("<option value=\"language\">Language</option>")
+		response.write("<option value=\"rank\">Rank</option>")
+		response.write("<option value=\"title\">Title</option>")
+		response.write("<option value=\"year\">Year</option>")
+		response.write("</select>")
+		response.write("<button type=\"submit\">Show books</button>")
+		response.write("</form>")
+		response.write(footer)
 	end
 	
 	#load the books in from the .txt file
@@ -104,6 +133,10 @@ class BookApp
 			@books << Book.new(params[0],params[1],params[2],params[3],params[4],rank)
 			rank += 1
 		end
+	end
+	
+	def footer
+		"<footer><br><br>&copy; 2014 Kolten Robison </footer>"
 	end
 end
 
