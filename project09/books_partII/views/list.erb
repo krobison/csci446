@@ -1,0 +1,43 @@
+<%= File.read('views/header.erb') %>
+<% sorter = request.query_string[7..-1] %>
+
+<% puts sorter %>
+
+<!-- Set up database connection -->
+
+<% DataMapper.setup(:default, 'sqlite:books.sqlite3.db') %>
+
+<% if sorter == "author" %>
+	<% books = Book.all(:order => [ :author.asc])%>
+<% elsif sorter == "rank" %>
+	<% books = Book.all(:order => [ :id.asc]) %>
+<% elsif sorter == "language" %>
+	<% books = Book.all(:order => [ :language.asc]) %>
+<% elsif sorter == "title" %>
+	<% books = Book.all(:order => [ :title.asc]) %>
+<% elsif sorter == "year" %>
+	<% books = Book.all(:order => [ :published.asc]) %>
+<% elsif sorter == "copies" %>
+	<% books = Book.all(:order => [ :sold.asc]) %>
+<% end %>
+	
+<table>
+	<tr>
+		<th>Rank</th>
+		<th>Title</th>
+		<th>Author</th>
+		<th>Language</th>
+		<th>Year</th>
+		<th>Copies</th></tr>
+<% books.each do |book| %>
+	<tr>
+		<td><%=book.id%></td>
+		<td><%=book.title%></td>
+		<td><%=book.author%></td>
+		<td><%=book.language%></td>
+		<td><%=book.published%></td>
+		<td><%=book.sold%></td>
+	</tr>
+<% end %>
+</table>
+<%= File.read('views/footer.erb') %>
